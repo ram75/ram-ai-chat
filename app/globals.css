@@ -76,3 +76,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .sidebar {
+    @apply w-[20%] p-4 border-r border-border flex flex-col;
+  }
+}

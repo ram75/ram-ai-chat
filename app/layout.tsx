@@ -1,16 +1,12 @@
 import { Metadata } from 'next'
 
 import { Toaster } from 'react-hot-toast'
-
+import { Sidebar } from '@/components/sidebar'
 import '@/app/globals.css'
 import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Providers } from '@/components/providers'
-import { Header } from '@/components/header'
-import { cookies } from 'next/headers'
-import { auth } from '@/auth'
-
 export const metadata: Metadata = {
   title: {
     default: 'Next.js AI Chatbot',
@@ -33,9 +29,6 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-
-    const cookieStore = cookies()
-  const session = await auth({ cookieStore })
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -49,8 +42,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <Toaster />
         <Providers attribute="class" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen flex-col">
-            {/* @ts-ignore */}
-        <Header session={session} />
+            <header className="fixed top-0 z-50 flex h-[10vh] w-full shrink-0 items-center justify-between border-b bg-gradient-to-b from-background/10 via-background/50 to-background/80 px-4 backdrop-blur-xl">
+              <h1 className="text-lg font-semibold">AI Chatbot</h1>
+            </header>
             <main className="flex flex-1 flex-col bg-muted/50">{children}</main>
           </div>
           <TailwindIndicator />
