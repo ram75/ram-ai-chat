@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
 import Textarea from 'react-textarea-autosize'
-import { UseChatHelpers } from 'ai/react'
 
 import { useEnterSubmit } from '@/lib/hooks/use-enter-submit'
 import { cn } from '@/lib/utils'
@@ -13,8 +12,9 @@ import {
 } from '@/components/ui/tooltip'
 import { IconArrowElbow, IconPlus } from '@/components/ui/icons'
 
-export interface PromptProps
-  extends Pick<UseChatHelpers, 'input' | 'setInput'> {
+export interface PromptProps {
+  input: string
+  setInput: (value: string) => void
   onSubmit: (value: string) => Promise<void>
   isLoading: boolean
 }
@@ -53,7 +53,7 @@ export function PromptForm({
               href="/"
               className={cn(
                 buttonVariants({ size: 'sm', variant: 'outline' }),
-                'absolute left-0 top-4 h-8 w-8 rounded-full bg-background p-0 sm:left-4'
+                'absolute left-0 top-4 size-8 rounded-full bg-background p-0 sm:left-4'
               )}
             >
               <IconPlus />

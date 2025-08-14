@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 
 import { Toaster } from 'react-hot-toast'
-import { Sidebar } from '@/components/sidebar'
 import '@/app/globals.css'
 import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'

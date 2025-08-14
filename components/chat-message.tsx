@@ -1,4 +1,4 @@
-import { Message } from 'ai'
+import { UIMessage } from 'ai'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
@@ -9,7 +9,7 @@ import { IconOpenAI, IconUser } from '@/components/ui/icons'
 import { ChatMessageActions } from '@/components/chat-message-actions'
 
 export interface ChatMessageProps {
-  message: Message
+  message: UIMessage
 }
 
 export function ChatMessage({ message, ...props }: ChatMessageProps) {
@@ -20,7 +20,7 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
     >
       <div
         className={cn(
-          'flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
+          'flex size-8 shrink-0 select-none items-center justify-center rounded-md border bg-background shadow',
           message.role === 'user'
             ? 'bg-background'
             : 'bg-primary text-primary-foreground'
@@ -59,18 +59,21 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
 
               return (
                 <CodeBlock
+                  key={Math.random()}
                   language={(match && match[1]) || ''}
                   value={String(children).replace(/\n$/, '')}
                   {...props}
                 />
-              )
+              );
             }
           }}
         >
-          {message.content}
+          {message.parts
+            .map(part => (part.type === 'text' ? part.text : ''))
+            .join('')}
         </MemoizedReactMarkdown>
         <ChatMessageActions message={message} />
       </div>
     </div>
-  )
+  );
 }

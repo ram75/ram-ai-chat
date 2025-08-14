@@ -1,5 +1,3 @@
-import { UseChatHelpers } from 'ai/react'
-
 import { Button } from '@/components/ui/button'
 import { ExternalLink } from '@/components/external-link'
 import { IconArrowRight } from '@/components/ui/icons'
@@ -19,24 +17,33 @@ const exampleMessages = [
   }
 ]
 
-export function EmptyScreen({
-  setInput
-}: {
-  setInput: (input: string) => void
-}) {
+export function EmptyScreen({ setInput }: { setInput: (input: string) => void }) {
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
         <h1 className="mb-2 text-lg font-semibold">
-          Welcome to the Supabaseified Next.js AI Chatbot!
+          Welcome to Next.js AI Chatbot!
         </h1>
         <p className="mb-2 leading-normal text-muted-foreground">
           This is an open source AI chatbot app template built with{' '}
-          <ExternalLink href="https://nextjs.org">Next.js</ExternalLink> and{' '}
-          <ExternalLink href="https://supabase.com">Supabase</ExternalLink>.
+          <ExternalLink href="https://nextjs.org">Next.js</ExternalLink>, the{' '}
+          <ExternalLink href="https://sdk.vercel.ai">
+            Vercel AI SDK
+          </ExternalLink>
+          , and{' '}
+          <ExternalLink href="https://vercel.com/storage/kv">
+            Vercel KV
+          </ExternalLink>
+          .
         </p>
         <p className="leading-normal text-muted-foreground">
-          You can start a conversation here or try the following examples:
+          It uses{' '}
+          <ExternalLink href="https://vercel.com/blog/ai-sdk-3-generative-ui">
+            React Server Components
+          </ExternalLink>{' '}
+          to combine text with UI generated as output of the LLM. The UI state
+          is synced through the SDK so the model is aware of your interactions
+          as they happen.
         </p>
         <div className="mt-4 flex flex-col items-start space-y-2">
           {exampleMessages.map((message, index) => (

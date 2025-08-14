@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { Inspector } from './inspector'
 
 export function AppLayout({
   sidebar,
@@ -10,13 +11,12 @@ export function AppLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="relative flex h-screen pt-[10vh]">
-      <div className="sidebar">
-        <div className="mt-auto">{sidebar}</div>
+    <div className="relative flex h-screen w-full">
+      <div className="w-1/4 flex-none overflow-y-auto">{sidebar}</div>
+      <main className="flex-1 bg-muted/50">{children}</main>
+      <div className="w-1/4 flex-none border-l bg-gray-50">
+        <Inspector />
       </div>
-      <main className="w-[80%] flex-1 flex-col bg-muted/50 p-4">
-        {children}
-      </main>
     </div>
   )
 }
